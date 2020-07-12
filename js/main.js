@@ -21,10 +21,63 @@
         
         playerValue = getRandom();
         playerCard.textContent = playerValue;
+        wrapper.removeEventListener('transitionend', init);
+    }
+    
+    function check(guess){
+        var str;
+        if(wrapper.classList.contains('open')){
+            return;
+        }
+        
+        
+        wrapper.classList.add('open');
+        higher.classList.add('disabled');
+        lower.classList.add('disabled');
+        
+        if(playerValue === dealerValue){
+            str = 'draw';
+        } else{
+            str = 'you'+ getResultStr(guess);
+        }
+        result.textContent = str;
+        result.classList.remove('hidden');
+    }
+    
+    function getResultStr(guess){
+        if(
+            playerValue > dealerCard && guess === 'higher'
+            || playerValue < dealerValue && guess === 'lower'
+           ){
+               return 'win!';
+           } else {
+               return 'lose...';
+           }
     }
     
     
     init();
     
+    higher.addEventListener('click' ,function() {
+        check('higher');
+        
+    });
+    
+    lower.addEventListener('click' ,function() {
+        check('lower');
+    });
+    
+    dealerCard.addEventListener('click',function() {
+        if(result.classList.contains('hidden')){
+            return;
+        }
+        
+        
+       result.classList.add('hidden');
+       wrapper.classList.remove('open');
+       higher.classList.remove('disabled');
+       lower.classList.remove('disabled');
+       wrapper.addEventListener('transitionend', init);
+    });
     
 }

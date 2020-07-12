@@ -2,6 +2,7 @@ body {
     background-color: #088A4B;
     font-family: Arial,sans-serif;
     font-size: 22px;
+    cursor: pointer;
 }
 
 .container {
@@ -68,7 +69,7 @@ body {
     color: #fff;
 }
 
-#wrapper:active {
+#wrapper.open {
     transform: rotateY(180deg);
 }
 
@@ -91,4 +92,23 @@ body {
 
 .player {
     perspective: 100px;
+}
+
+#result.hidden {
+    visibility: hidden;
+}
+
+.dealer {
+    cursor: pointer;
+}
+
+.btn:hover {
+    margin-top: 2px;
+    box-shadow: 0 3px 0 rgba(0,0,0,0.2);
+}
+
+.btn.disabled {
+    opacity: 0.4;
+    margin-top: 2px;
+    box-shadow: 0 3px 0 rgba(0,0,0,0.2);
 }
